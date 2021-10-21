@@ -1,0 +1,67 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 45.625rem;
+
+  h2 {
+    font-size: 1.625rem;
+  }
+
+  .dev-light {
+    color: black;
+  }
+
+  .dev-dark {
+    color: white;
+  }
+
+  .darkmode-container {
+    div {
+      display: flex;
+    }
+
+    .dark-mode {
+      p {
+        margin-right: 1rem;
+        color: #697c9a;
+        font-size: 0.813rem;
+        text-transform: uppercase;
+      }
+    }
+
+    .dark-mode.on {
+      display: none;
+    }
+
+    .light-mode {
+      p {
+        margin-right: 1rem;
+        color: white;
+        font-size: 0.813rem;
+        text-transform: uppercase;
+      }
+    }
+
+    .light-mode.on {
+      display: none;
+    }
+  }
+
+  .darkmode-container:hover {
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 53.438rem) {
+  .header-container {
+    width: 35.813rem;
+  }
+}
+
+@media only screen and (max-width: 38.75rem) {
+  .header-container {
+    max-width: 80vw;
+    min-width: 20.438rem;
+  }
+}
