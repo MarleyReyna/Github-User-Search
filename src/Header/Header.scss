@@ -4,7 +4,7 @@
   align-items: center;
   width: 45.625rem;
 
-  h2 {
+  h1 {
     font-size: 1.625rem;
   }
 
@@ -17,8 +17,21 @@
   }
 
   .darkmode-container {
+    border: none;
+
     div {
       display: flex;
+    }
+
+    .sr-only {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
     }
 
     .dark-mode {

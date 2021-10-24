@@ -30,18 +30,10 @@ main {
         width: 25rem;
       }
 
-      .input.dark {
-        color: white;
-      }
-
       ::placeholder {
         font-family: "Space Mono", monospace;
         color: #4b6a9b;
         font-size: 1.125rem;
-      }
-
-      .input.dark::placeholder {
-        color: white;
       }
     }
 
@@ -82,6 +74,14 @@ main {
   .searchbar.dark {
     background-color: #1e2a47;
     box-shadow: none;
+
+    .input {
+      color: white;
+    }
+
+    ::placeholder {
+      color: white;
+    }
   }
   //   End of Seachbar
 
@@ -114,6 +114,11 @@ main {
 
         .name-unavailable {
           color: #4b6a9b;
+          font-size: 1.625rem;
+        }
+
+        .name {
+          font-size: 1.625rem;
         }
 
         .date-join {
@@ -128,31 +133,12 @@ main {
           }
         }
       }
-
-      .user-name.dark {
-        h1 {
-          color: white;
-        }
-
-        .name-unavailable {
-          opacity: 0.75;
-        }
-
-        p {
-          color: white;
-        }
-
-        .login-name {
-          color: #0079ff;
-        }
-      }
     }
 
     .user-info {
       width: 100%;
       padding-right: 3rem;
       padding-left: 12.625rem;
-      //   margin-top: -2rem;
 
       .bio {
         color: #4b6a9b;
@@ -170,95 +156,98 @@ main {
       }
 
       .user-stats {
-        display: flex;
-        align-items: center;
         background-color: #f6f8ff;
         border-radius: 10px;
 
-        div {
+        .sr-only {
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
+
+        ul {
           display: flex;
-          flex-direction: column;
-          color: #4b6a9b;
-          font-size: 0.813rem;
-        }
+          align-items: center;
+          li {
+            display: flex;
+            flex-direction: column;
 
-        span {
-          font-weight: bold;
-          color: black;
-          font-size: 1.375rem;
-        }
+            p {
+              color: #4b6a9b;
+              font-size: 0.813rem;
+            }
+          }
 
-        .repos {
-          margin: 0.938rem 6.188rem 1.063rem 2rem;
-        }
+          span {
+            font-weight: bold;
+            color: black;
+            font-size: 1.375rem;
+          }
 
-        .followers {
-          margin: 0.938rem 5.125rem 1.063rem 0rem;
-        }
-      }
+          .repos {
+            margin: 0.938rem 6.188rem 1.063rem 2rem;
+          }
 
-      .user-stats.dark {
-        background-color: #141d2f;
-
-        div {
-          color: white;
-        }
-
-        span {
-          color: white;
+          .followers {
+            margin: 0.938rem 5.125rem 1.063rem 0rem;
+          }
         }
       }
 
       .user-links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        margin: 2.313rem 0rem 1.812rem;
-        max-width: 30rem;
-
-        div {
-          display: flex;
-          margin-bottom: 1.188rem;
-          width: fit-content;
-
-          img {
-            margin-right: 1rem;
-            max-height: 20px;
-          }
-
-          p {
-            color: #4b6a9b;
-            font-size: 0.93rem;
-          }
-
-          a {
-            text-decoration: none;
-            color: #4b6a9b;
-            font-size: 0.93rem;
-            margin-right: 3.875rem;
-            text-overflow: ellipsis;
-            max-width: 19ch;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-
-          a:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-
-      .user-links.dark {
-        img {
-          filter: brightness(0) invert(1);
+        .sr-only {
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
         }
 
-        p {
-          color: white;
-        }
+        ul {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          margin: 2.313rem 0rem 1.812rem;
+          max-width: 30rem;
 
-        a {
-          color: white;
+          li {
+            display: flex;
+            margin-bottom: 1.188rem;
+            width: fit-content;
+
+            img {
+              margin-right: 1rem;
+              max-height: 20px;
+            }
+
+            p {
+              color: #4b6a9b;
+              font-size: 0.93rem;
+            }
+
+            a {
+              text-decoration: none;
+              color: #4b6a9b;
+              font-size: 0.93rem;
+              margin-right: 3.875rem;
+              text-overflow: ellipsis;
+              max-width: 19ch;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
 
@@ -272,6 +261,26 @@ main {
     background-color: #1e2a47;
     box-shadow: none;
 
+    .profile-container {
+      .user-name {
+        h2 {
+          color: white;
+        }
+
+        .name-unavailable {
+          opacity: 0.75;
+        }
+
+        p {
+          color: white;
+        }
+
+        .login-name {
+          color: #0079ff;
+        }
+      }
+    }
+
     .bio {
       color: white;
     }
@@ -279,6 +288,36 @@ main {
     .bio-unavailable {
       color: white;
       opacity: 0.75;
+    }
+
+    .user-info {
+      .user-stats {
+        background-color: #141d2f;
+
+        div {
+          p {
+            color: white;
+          }
+        }
+
+        span {
+          color: white;
+        }
+      }
+
+      .user-links {
+        img {
+          filter: brightness(0) invert(1);
+        }
+
+        p {
+          color: white;
+        }
+
+        a {
+          color: white;
+        }
+      }
     }
   }
 }
@@ -325,8 +364,10 @@ main {
         }
 
         .user-links {
-          margin-top: 1.875rem;
-          margin-bottom: 0rem;
+          ul {
+            margin-top: 1.875rem;
+            margin-bottom: 0rem;
+          }
         }
       }
     }
@@ -417,45 +458,53 @@ main {
         }
 
         .user-stats {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
           padding-left: 0.938rem;
           padding-right: 0.875rem;
 
-          div {
-            margin: 1.125rem 0rem 1.188rem;
-            text-align: center;
-            font-size: 0.688rem;
-          }
+          ul {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
 
-          span {
-            font-size: 1rem;
-          }
+            li {
+              margin: 1.125rem 0rem 1.188rem;
+              text-align: center;
 
-          .repos {
-            margin: 0;
-          }
+              p {
+                font-size: 0.688rem;
+              }
+            }
 
-          .followers {
-            margin: 0;
+            span {
+              font-size: 1rem;
+            }
+
+            .repos {
+              margin: 0;
+            }
+
+            .followers {
+              margin: 0;
+            }
           }
         }
 
         .user-links {
-          display: flex;
-          flex-direction: column;
-          margin-top: 0.5rem;
+          ul {
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.5rem;
 
-          div {
-            margin-top: 1rem;
-            margin-bottom: 0;
+            li {
+              margin-top: 1rem;
+              margin-bottom: 0;
 
-            p {
-              font-size: 0.813rem;
-            }
+              p {
+                font-size: 0.813rem;
+              }
 
-            a {
-              font-size: 0.813rem;
+              a {
+                font-size: 0.813rem;
+              }
             }
           }
         }

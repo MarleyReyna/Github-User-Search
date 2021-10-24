@@ -25,10 +25,11 @@ const Main = (props) => {
 
     useEffect(() =>{
         const githubInput = document.getElementById('githubInput');
+        const errorID = document.getElementById('error-active').id;
         const ariaInput = () =>{
             if(error){
                 githubInput.setAttribute("aria-invalid", "true");
-                githubInput.setAttribute("aria-describedBy", "User not found");
+                githubInput.setAttribute("aria-describedBy", errorID);
             } else if(error !== true && githubInput.hasAttribute("aria-invalid")){
                 githubInput.removeAttribute("aria-invalid");
                 githubInput.removeAttribute("aria-describedBy");
@@ -43,12 +44,6 @@ const Main = (props) => {
     const handleSubmit = (e) =>{
         e.preventDefault();
         loadUser(input);
-    };
-
-    const handleEnter = (e) =>{
-        if(e.keyCode === 13){
-            loadUser(input);
-        }
     };
 
     const loadUser = (input) =>{
@@ -96,20 +91,25 @@ const Main = (props) => {
             {/* Search Bar */}
             <div className={dark ? 'searchbar dark' : 'searchbar'} role='search'>
                 <div className='left-container'>
-                    <img src={search} alt='search' />
-                    <input
-                    id='githubInput'
-                    placeholder='Search Github username&#8230;'
-                    value={input}
-                    onChange={(event) => setInput(event.target.value)}
-                    onKeyDown={handleEnter}    
-                    className={dark ? 'input dark' : 'input'}
-                    aria-label='Search github username'
-                    role='search'
-                    />
+                    <img src={search} 
+                    alt=''
+                    aria-hidden='true' />
+                    <form onSubmit={handleSubmit}>
+                        <input
+                        id='githubInput'
+                        placeholder='Search Github username&#8230;'
+                        value={input}
+                        onChange={(event) => setInput(event.target.value)}  
+                        className={'input'}
+                        aria-label='Search github username'
+                        role='search'
+                        />
+                    </form>
                 </div>
                 <div className='right-container'>
-                    <p className={error ? 'error-active' : 'error'}>
+                    <p className={error ? 'error-active' : 'error'}
+                    id='error-active'
+                    aria-live='polite'>
                         No results
                     </p>
                     <button
@@ -120,14 +120,15 @@ const Main = (props) => {
                 </div>
             </div>
             {/* User Card */}
-            <div className={dark ? "user-card dark" : "user-card"}>
+            <div className={dark ? "user-card dark" : "user-card"}
+            aria-live='polite'>
                 <div className='profile-container'>
-                    <img src={data.avatar_url} alt='profile' className='pfp'></img>
-                    <div className={dark ? 'user-name dark' : 'user-name'}>
+                    <img src={data.avatar_url} alt={data.name} className='pfp'></img>
+                    <div className={'user-name'}>
                         <div>
-                            <h1 className={data.name === null ? 'name-unavailable' : 'name'}>
+                            <h2 className={data.name === null ? 'name-unavailable' : 'name'}>
                                 {data.name !== null ? data.name : "Unavailable"}
-                            </h1>
+                            </h2>
                             <p className='login-name'>@{data.login}</p>
                         </div>
                         <p className='date-join'>{getDateJoined(data.created_at)}</p>
@@ -137,39 +138,53 @@ const Main = (props) => {
                     <p className={data.bio === null ? 'bio-unavailable' : 'bio'}>
                         {data.bio === null ? "This profile has no bio" : data.bio}
                     </p>
-                    <div className={dark ? "user-stats dark" : "user-stats"}>
-                        <div className='repos'>
-                            Repos <span>{data.public_repos}</span>
-                        </div>
-                        <div className='followers'>
-                            Followers <span>{data.followers}</span>
-                        </div>
-                        <div className='following'>
-                            Following <span>{data.following}</span>
-                        </div>
-                    </div>
-                    <div className={dark ? 'user-links dark' : 'user-links'}>
-                        <div className={classUnavailable(data.location)}>
-                            <img src={location} alt='location'/>
-                            <p>{infoUnavailable(data.location)}</p>
-                        </div>
-                        <div className={classUnavailable(data.twitter_username)}>
-                            <img src={twitter} alt='twitter'/>
-                            <p>{infoUnavailable(data.twitter_username)}</p>
-                        </div>
-                        <div className={classUnavailable(data.blog)}>
-                            <img src={website} alt='blog'/>
-                            <a href={data.blog}>{infoUnavailable(data.blog)}</a>
-                        </div>
-                        <div className={classUnavailable(data.company)}>
-                            <img src={company} alt='company'/>
-                            <p>{infoUnavailable(data.company)}</p>
-                        </div>
-                    </div>
+                    <section className={"user-stats"}>
+                        <h3 class="sr-only">User profile stats</h3>
+                        <ul>
+                            <li className='repos'>
+                                <p>Repos <br /><span>{data.public_repos}</span></p> 
+                            </li>
+                            <li className='followers'>
+                                <p>Followers <br/><span>{data.followers}</span></p>  
+                            </li>
+                            <li className='following'>
+                                <p>Following <br /><span>{data.following}</span></p> 
+                            </li>
+                        </ul>
+                    </section>
+                    <section className={'user-links'}>
+                        <h3 class="sr-only">User profile information</h3>
+                        <ul>
+                            <li className={classUnavailable(data.location)}>
+                                <img src={location} 
+                                alt=''
+                                aria-hidden='true'/>
+                                <p>{infoUnavailable(data.location)}</p>
+                            </li>
+                            <li className={classUnavailable(data.twitter_username)}>
+                                <img src={twitter} 
+                                alt=''
+                                aria-hidden='true'/>
+                                <p>{infoUnavailable(data.twitter_username)}</p>
+                            </li>
+                            <li className={classUnavailable(data.blog)}>
+                                <img src={website} 
+                                alt=''
+                                aria-hidden='true'/>
+                                <a href={data.blog}>{infoUnavailable(data.blog)}</a>
+                            </li>
+                            <li className={classUnavailable(data.company)}>
+                                <img src={company} 
+                                alt=''
+                                aria-hidden='true'/>
+                                <p>{infoUnavailable(data.company)}</p>
+                            </li>
+                        </ul>
+                    </section>
                 </div>
             </div>
         </main>
     );
-}
+};
  
 export default Main;
