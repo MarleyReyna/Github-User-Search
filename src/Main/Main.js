@@ -110,7 +110,7 @@ const Main = (props) => {
                     <p className={error ? 'error-active' : 'error'}
                     id='error-active'
                     aria-live='polite'>
-                        No results
+                        {error ? 'No results' : ''}
                     </p>
                     <button
                     onClick={handleSubmit}

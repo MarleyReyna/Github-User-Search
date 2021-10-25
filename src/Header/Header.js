@@ -9,7 +9,7 @@ const Header = (props) => {
     const setDark = props.setDark;
 
     const handleKeyDown = (key) =>{
-        if (key.keyCode === 39 || key.keyCode === 37){
+        if (key.keyCode === 32){
             setDark(!dark);
         }
     };
